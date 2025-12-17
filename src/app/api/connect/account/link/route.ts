@@ -17,9 +17,8 @@ export async function POST(req: Request) {
       throw new Error("Missing STRIPE_SECRET_KEY");
     }
 
-    const stripe = new Stripe(sk, {
-      apiVersion: "2024-06-20",
-    });
+    const stripe = new Stripe(sk);
+
 
     // 3️⃣ Create onboarding Account Link
     const accountLink = await stripe.accountLinks.create({
