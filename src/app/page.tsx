@@ -65,16 +65,7 @@ export default function Home() {
     }
   }
 
-  async function loadStatus() {
-    setLeadMsg("");
-    try {
-      const res = await fetch("/api/status", { cache: "no-store" });
-      const data = (await res.json()) as StatusResponse;
-      setStatusObj(data);
-    } catch {
-      setStatusObj(null);
-    }
-  }
+  
 
     setLeadMsg("Saving...");
     try {
@@ -94,9 +85,8 @@ export default function Home() {
 
   useEffect(() => {
     checkHealth();
-    loadStatus();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-black text-white">
