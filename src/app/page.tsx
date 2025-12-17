@@ -24,6 +24,7 @@ export default function Home() {
   const [leadMsg, setLeadMsg] = useState<string>("");
   async function submitLead() {
     setLeadMsg("Submitting...");
+  
     try {
       const res = await fetch("/api/waitlist", {
         method: "POST",
@@ -31,18 +32,19 @@ export default function Home() {
         body: JSON.stringify({ email }),
       });
   
-      const data = await res.json();
+      const data = await res.json().catch(() => ({} as any));
   
-      if (data.ok) {
+      if (res.ok && (data as any).ok) {
         setLeadMsg("You're on the waitlist 🚀");
         setEmail("");
       } else {
-        setLeadMsg(data.error || "Something went wrong");
+        setLeadMsg((data as any).error || "Something went wrong");
       }
-    } catch (err) {
+    } catch {
       setLeadMsg("Network error. Try again.");
     }
   }
+  
   
   
   async function checkHealth() {
