@@ -6,7 +6,8 @@ export async function POST() {
     const sk = process.env.STRIPE_SECRET_KEY;
     if (!sk) throw new Error("Missing STRIPE_SECRET_KEY");
 
-    const stripe = new Stripe(sk, { apiVersion: "2024-06-20" });
+    const stripe = new Stripe(sk);
+
 
     // Safest start: Express connected accounts (Stripe-hosted onboarding)
     const account = await stripe.accounts.create({
