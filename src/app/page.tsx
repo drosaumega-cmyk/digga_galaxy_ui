@@ -74,7 +74,6 @@ export default function Home() {
     }
   }
 
-  async function submitLead() {
     setLeadMsg("Saving...");
     try {
       const res = await fetch("/api/lead", {
