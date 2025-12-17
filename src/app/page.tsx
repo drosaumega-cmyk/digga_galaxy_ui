@@ -24,7 +24,6 @@ export default function Home() {
   const [leadMsg, setLeadMsg] = useState<string>("");
   async function submitLead() {
     setLeadMsg("Submitting...");
-  
     try {
       const res = await fetch("/api/waitlist", {
         method: "POST",
@@ -44,6 +43,7 @@ export default function Home() {
       setLeadMsg("Network error. Try again.");
     }
   }
+  
   
   async function checkHealth() {
     setStatusText("Checking...");
