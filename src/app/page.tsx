@@ -22,7 +22,29 @@ export default function Home() {
   // Lead capture state
   const [email, setEmail] = useState<string>("");
   const [leadMsg, setLeadMsg] = useState<string>("");
-
+  async function submitLead() {
+    setLeadMsg("Submitting...");
+  
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+  
+      const data = await res.json();
+  
+      if (data.ok) {
+        setLeadMsg("You're on the waitlist 🚀");
+        setEmail("");
+      } else {
+        setLeadMsg(data.error || "Something went wrong");
+      }
+    } catch (err) {
+      setLeadMsg("Network error. Try again.");
+    }
+  }
+  
   async function checkHealth() {
     setStatusText("Checking...");
     try {
