@@ -20,9 +20,8 @@ export async function POST(request: Request) {
       throw new Error("Missing STRIPE_PRICE_ID");
     }
 
-    const stripe = new Stripe(sk, {
-      apiVersion: "2024-06-20",
-    });
+    const stripe = new Stripe(sk, {});
+
 
     const origin =
       request.headers.get("origin") ?? "http://localhost:3000";
