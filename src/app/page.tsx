@@ -67,21 +67,7 @@ export default function Home() {
 
   
 
-    setLeadMsg("Saving...");
-    try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || "Failed");
-      setLeadMsg("Saved. You’re on the list.");
-      setEmail("");
-    } catch (e: any) {
-      setLeadMsg(`Error: ${e?.message ?? "Could not save"}`);
-    }
-  }
+    
 
   useEffect(() => {
     checkHealth();
