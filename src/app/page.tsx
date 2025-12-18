@@ -132,7 +132,8 @@ export default function Home() {
 
         <div className="mt-3 flex flex-wrap items-center gap-3">
           <button
-            onClick={loadStatus}
+            onClick={checkHealth}
+
             className="rounded-full bg-emerald-400 px-5 py-2 text-sm font-medium text-black hover:bg-emerald-300"
           >
             Refresh Status
